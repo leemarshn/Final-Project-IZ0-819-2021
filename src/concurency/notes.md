@@ -50,7 +50,13 @@
 
 ###### using callable
 * callable is a functional interface has the method call `v call() throws exception`
-* the `submit(callable task)` can take both a callable instance or a runnable instance
+* the `submit(callable task)` can take both a callable instance, or a runnable instance
 * remember the future instance returns a generic interface in callable v is determined by the return type of the callable
 * the call() method of the callable does not take any parameters but can return a value, the value returned can be accessed using the get method of the future instance
 
+###### scheduling tasks
+* schedule(Callable<V> callable, long delay, TimeUnit unit)
+* schedule(Runnable command, long delay, TimeUnit unit)
+* `scheduleAtFixedRate(runnable command,long initialDelay, long Delay, TimeUnit unit)` -> submits new tasks after the initial delay regardless of the termination of the previous task
+* `scheduledWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)` -> creates a new task only if the previous task has completed
+* There is a `ScheduledFuture<v>` which has a `getDelay()`
