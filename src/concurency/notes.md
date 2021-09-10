@@ -60,3 +60,21 @@
 * `scheduleAtFixedRate(runnable command,long initialDelay, long Delay, TimeUnit unit)` -> submits new tasks after the initial delay regardless of the termination of the previous task
 * `scheduledWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)` -> creates a new task only if the previous task has completed
 * There is a `ScheduledFuture<v>` which has a `getDelay()`
+
+##### Thread Safety
+* Atomic is the property of an operation to be carried out as a single unit of execution without any interference by other threads
+###### Atomic classes
+* AtomicBoolean
+* AtomicInteger
+* AtomicLong
+
+* using atomic classes ensures that data is consistent between workers and no values are lost due to concurrent modifications
+* Atomic classes have the following methods
+* get()
+* set()
+* incrementAndGet() -> ++value
+* decrementAndGet() -> --value
+* getAndIncrement() -> value++
+* getAndDecrement()
+* getAndSet()
+
