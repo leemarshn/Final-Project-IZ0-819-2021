@@ -1,3 +1,4 @@
+#### JAVA CONCURRENCY SUMMARIZED NOTES
 * A thread is the smallest unit of execution that can be scheduled byt the operating system.
 * A process is a group of associated threads that run in the same shared environment
 * Shared environment is shared memory and space also thread can communicate with each other
@@ -8,7 +9,7 @@
 * User defined thread: created by the application developer to run a specific task
 * daemon: will not prevent the application from exiting when the program finishes
 
-### concurrency
+#### Concurrency
 * Concurrency: the property of executing multiple tasks and processes at the same time
 * context switching: occurs when the allotted time for a specific thread is complete but the thread has not completed execution
 * A context switch is the process of storing the current state of a thread and later restoring the state to continue execution
@@ -61,7 +62,7 @@
 * `scheduledWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)` -> creates a new task only if the previous task has completed
 * There is a `ScheduledFuture<v>` which has a `getDelay()`
 
-##### Thread Safety
+#### Thread Safety
 * Atomic is the property of an operation to be carried out as a single unit of execution without any interference by other threads
 ###### Atomic classes
 * AtomicBoolean
@@ -78,3 +79,5 @@
 * getAndDecrement()
 * getAndSet()
 
+###### Cyclic Barrier
+* The CyclicBarrier takes in its constructors a limit value, indicating the number of threads to wait for. As each thread finishes, it calls the await() method on the cyclic barrier. Once the specified number of threads have each called	await() the barrier is released, and all threads can continue.
