@@ -62,6 +62,13 @@
 * `scheduledWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)` -> creates a new task only if the previous task has completed
 * There is a `ScheduledFuture<v>` which has a `getDelay()`
 
+##### Increasing concurrency with pool
+* thread pool is a group of pre-instantiated reusable threads that are available to perform a set of available tasks
+* ExecutorService newSingleThreadExecutor()
+* ScheduledExecutorService newSingleThreadScheduledExecutor()
+* `ExecutorService newCachedThreadPool()` -> creates a thread pool of unbounded size - a new thread is created when required or all the threads are busy - mainly used for many short-lived asynchronous tasks
+* ExecutorService newFixedThreadPool(int num)  -> takes a number of threads and allocates them all upon creation if number of tasks exceeds number of threads the tasks will have to wait
+* ScheduledExecutorService newScheduledThreadPool() -> 
 #### Thread Safety
 * Atomic is the property of an operation to be carried out as a single unit of execution without any interference by other threads
 ###### Atomic classes
