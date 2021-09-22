@@ -68,3 +68,32 @@
 * `ExecutorService newCachedThreadPool()` -> creates a thread pool of unbounded size - a new thread is created when required or all the threads are busy - mainly used for many short-lived asynchronous tasks
 * ExecutorService newFixedThreadPool(int num)  -> takes a number of threads and allocates them all upon creation if number of tasks exceeds number of threads the tasks will have to wait
 * ScheduledExecutorService newScheduledThreadPool() -> 
+
+
+##### Thread Safety
+* Atomic is the property of an operation to be carried out as a single unit of execution without any interference by other threads
+###### Atomic classes
+* AtomicBoolean
+* AtomicInteger
+* AtomicLong
+
+* using atomic classes ensures that data is consistent between workers and no values are lost due to concurrent modifications
+* Atomic classes are good for protecting single variables
+  
+* Atomic classes have the following methods
+* get()
+* set()
+* incrementAndGet() -> ++value
+* decrementAndGet() -> --value
+* getAndIncrement() -> value++
+* getAndDecrement()
+* getAndSet()
+
+###### Improving access with synchronized block
+* using a monitor to synchronize access
+* a monitor is a structure that supports mutual exclusions - where at most only one thread enters execution at a time
+* to synchronize access across multiple threads each thread must have access to the same object
+* a synchronized block is limited in functionality. there is no way to tell whether the lock is available, also if the lock is never available, and we synchronize on it the program may hang forever
+##### Understanding the lock framework
+* Lock interface is similar to synchronized block but with more functionality. instead of synchronizing on any object we lock only the object that implements the lock interface
+* Lock are important when threads needs to share common data
