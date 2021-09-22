@@ -19,10 +19,11 @@ public class SearchFiles {
 
         try (var s = Files.walk(Paths.get(dir), depth)){
             s.
-                     filter(f -> !Files.isDirectory(f))
+                     parallel()
+                    .filter(f -> !Files.isDirectory(f))
                     .map(Path::getFileName)
                     .map(Path::toString)
-                    .filter(f -> f.endsWith(".csv"))
+                    .filter(f -> f.endsWith(".pdf"))
                     //.map(f -> Files.lines(f))
                     .forEach(System.out::println);
 

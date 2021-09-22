@@ -87,7 +87,7 @@ lines.forEach(System.out::println);`
 * boolean isWrittable
 * boolean isReadable
 * boolean isDirectory
-* static long size(Path path) throws IOException
+* static long size(Path path) throws IOException : to get the accurate size of a directory use walk method
 * static FileTime getLastModified(Path path) throws IOException
 
 #####reading and modifying fileAttributes
@@ -97,7 +97,7 @@ lines.forEach(System.out::println);`
 #### Applying functional programing 
 * `static Stream<Path> walk(Path path, FileVisitOption... option) throws IOException `- remember to use `FileVisitOption` to avoid circular paths - java.io uses depth first search - i.e from the root to the node
 * static Stream<Path> walk(Path path, int maxDepth, FileVisitOption... option) throws IOException
-* `static Stream<Path> list(Path dir) throws IOException `-> perfoms shallow copy
+* `static Stream<Path> list(Path dir) throws IOException `-> performs shallow copy
 * `static Stream<Path> find(Path path, int maxDepth, BiPredicate<Path path, BasicFileAttributes attr> matcher, FileVisitOption... options) throws IOException`
 * `static Stream<String> lines(Path path) throws IOExceptions`
 
