@@ -25,8 +25,6 @@ public class ListDirectoryContents {
         }
     }
 
-
-
     public static void main(String[] args) throws IOException {
         String p = "/home/oracle/Documents/Java/Reading Now/code";
         int depth = 1;
