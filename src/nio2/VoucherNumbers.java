@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class VoucherNumbers {
     private final long upTo = 1_000_000L;
 
-    private List<Long> generateRandomNumbers(long limit) {
+    public List<Long> generateRandomNumbers(long limit) {
         List<Long> random= new ArrayList<>();
         for (int i = 0; i < limit; i++) {
             long smallest = 1000_0000_0000_0000L;
@@ -21,7 +21,7 @@ public class VoucherNumbers {
         return random;
     }
 
-    void writeToFile(List<Long> data, Path path) throws IOException {
+    private void writeToFile(List<Long> data, Path path) throws IOException {
         try(var writer = Files.newBufferedWriter(path)){
             for(var line : data) {
                 writer.write(line.toString());
@@ -30,7 +30,7 @@ public class VoucherNumbers {
         }
     }
 
-    void readFile(Path path) throws IOException {
+    private void readFile(Path path) throws IOException {
         try (var read = Files.lines(path)){
             read.sorted()
                     .forEach(System.out::println);
