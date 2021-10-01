@@ -40,7 +40,7 @@ public class ParallelStream extends VoucherNumbers {
     //    System.out.println(doWork(n.generateRandomNumbers(100)));
 
 
-        List<Long> list = n.generateRandomNumbers(100);
+        List<Long> list = n.generateRandomNumbers();
         Iterator<Long> iterator = list.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next());
