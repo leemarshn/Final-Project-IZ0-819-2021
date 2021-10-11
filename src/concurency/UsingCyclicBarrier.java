@@ -40,7 +40,7 @@ public class UsingCyclicBarrier {
         try {
             service = Executors.newFixedThreadPool(10);
             var c1 = new  CyclicBarrier(10);
-            var c2 = new CyclicBarrier(4, ()-> System.out.println("finished cleaning zoo"));
+            var c2 = new CyclicBarrier(10,()-> System.out.println("finished cleaning zoo"));
             for (int i=0; i<10; i++)
             service.submit(()-> zoo.performTasks(c1) );
         }finally {

@@ -15,7 +15,7 @@ public class ParallelReduce {
      Optional sum =   List.of(1,2,3,4,5,6,7,8,9)
                 .stream()
              .parallel()
-                .reduce( (s1, s2) -> s1 +s2);
+                .reduce(Integer::sum);
 
         System.out.println(sum);
 

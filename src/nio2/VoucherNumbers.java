@@ -3,64 +3,72 @@ package nio2;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 public class VoucherNumbers {
-    private final long upTo = 1_000_000L;
+    private static final long limit = 1_0L;
+    private  static final VoucherNumbers vn = new VoucherNumbers();
 
-    public List<Long> generateRandomNumbers(long limit) {
+    public List<Long> generateRandomNumbers() {
         List<Long> random= new ArrayList<>();
         for (int i = 0; i < limit; i++) {
             long smallest = 1000_0000_0000_0000L;
             long biggest = 9999_9999_9999_9999L;
-            random.add(ThreadLocalRandom.current().nextLong(smallest, biggest + 1));
+            random.add(ThreadLocalRandom.current().nextLong(smallest, biggest));
         }
         return random;
     }
 
-    private void writeToFile(List<Long> data, Path path) throws IOException {
+    private Path getPath(){
+        Path path = Path.of("C:\\Users\\Lenovo\\Documents\\nio2\\folder1\\voucher_numbers.csv");
+        if (Files.exists(path))
+            path =  Path.of("C:\\Users\\Lenovo\\Documents\\nio2\\folder1\\voucher_numbers2.csv");
+
+        return path;
+
+    }
+
+    private Path writeToFile(){
+        Path path = Path.of("C:\\Users\\Lenovo\\Documents\\nio2\\folder1\\voucher_numbers.csv");
+        if (Files.exists(path))
+            path =  Path.of("C:\\Users\\Lenovo\\Documents\\nio2\\folder1\\voucher_numbers2.csv");
+        List<Long> data = vn.generateRandomNumbers();
         try(var writer = Files.newBufferedWriter(path)){
             for(var line : data) {
                 writer.write(line.toString());
                 writer.newLine();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return path;
     }
 
-    private void readFile(Path path) throws IOException {
+    private void readFile(Path path){
         try (var read = Files.lines(path)){
             read.sorted()
                     .forEach(System.out::println);
 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    void performTasks(CyclicBarrier c1){
+
+        //vn.writeToFile(vn.generateRandomNumbers());
     }
 
 
     public static void main(String[] args) throws IOException {
 
-        VoucherNumbers vn = new VoucherNumbers();
-        Path path = Path.of("C:\\Users\\Lenovo\\Documents\\nio2\\folder1\\voucher-numbers.csv");
+        vn.writeToFile();
+        vn.readFile(vn.writeToFile());
 
-        long start = System.currentTimeMillis();
-        vn.generateRandomNumbers(vn.upTo)
-                .stream()
-                .parallel()
-                .sorted()
-                .distinct()
-                .forEach(System.out::println);
-        long end = System.currentTimeMillis()-start;
-        double totalTime = end/1000.0;
-
-        System.out.println("It took: " + totalTime + " Seconds to generate "
-                + new DecimalFormat("###,###,###,###.00").format(vn.upTo)
-                +" Possible Voucher Values");
-
-        vn.writeToFile(vn.generateRandomNumbers(vn.upTo), path);
-        vn.readFile(path);
-
+//        System.out.println(path.getFileName());
 
     }
 }
