@@ -29,6 +29,12 @@
 * when you call `isShutDown()` all pending tasks will continue executing while any new task that is being submitted will return a `RejectExecutionException`
 * until all tasks are terminated isShutDown will return true & isTerminated will return false
 
+#### singleThreadExecutor
+* Executors.newSingleThreadExecutor 
+* Results are guaranteed to be executed sequentially
+* The main() is a separate thread.
+
+
 ###### Submitting a task using the executor service
 * create an instance of the executorService
 * prepare your runnable tasks
